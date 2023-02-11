@@ -8,7 +8,7 @@ interface SorterProps {
 
 export function Sorter({ bars, children }: SorterProps) {
   return (
-    <div className="flex flex-col gap-y-4 md:gap-y-20">
+    <div className="flex flex-col gap-y-4">
       <div>{children}</div>
       {/* Render bars */}
       <div className="flex items-end justify-center bg-red-100 shadow-md rounded-2xl pt-5 px-10 h-[550px]">

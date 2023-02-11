@@ -22,7 +22,7 @@ export function useSorter(algorithm: SortingAlgorithmType) {
     let bars: Array<Bar> = [];
     const barCount = getBarCountForScreenSize();
     for (let i = 0; i < barCount; i++) {
-      const weight = getRandomNumber(20, 100);
+      const weight = getRandomNumber(10, 100);
       bars = [...bars, { weight, color: "coral" }];
     }
     setBars(bars);
