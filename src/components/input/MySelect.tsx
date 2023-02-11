@@ -1,4 +1,4 @@
-import { SelectOption } from "../types";
+import { SelectOption } from "../../types";
 
 interface MySelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
