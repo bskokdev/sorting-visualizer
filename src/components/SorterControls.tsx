@@ -5,8 +5,7 @@ interface SorterControlsProps {
 
 /**
  * Controls for the Sorter component, which disables the controls when sorting is in progress.
- * @param children
- * @param isSorting
+ * @param {SorterControlsProps} { children, isSorting }
  */
 export default function SorterControls({
   children,

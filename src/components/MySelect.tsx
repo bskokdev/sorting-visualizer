@@ -5,6 +5,10 @@ interface MySelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   options: Array<SelectOption>;
 }
 
+/**
+ * A custom select component including a label, extending the default select element.
+ * @param {MySelectProps} { options, label, ...props }
+ */
 export default function MySelect({ options, label, ...props }: MySelectProps) {
   return (
     <div>

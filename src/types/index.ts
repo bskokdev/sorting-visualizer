@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Types for the project
+ */
 export type Bar = {
   weight: number;
   color: string;

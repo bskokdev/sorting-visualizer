@@ -5,8 +5,13 @@ import { Bar, SortingAlgorithmType } from "../types";
 import { getBarCountForScreenSize, getRandomNumber } from "../utils";
 import { SortingAlgorithmProps } from "./../types/index";
 
-export function useSorter(algorithm: SortingAlgorithmType) {
-  const [algo, setAlgo] = useState<SortingAlgorithmType>(algorithm);
+/**
+ * Custom hook to handle sorting logic
+ * functions: shuffle, changeAlgorithm, changeSpeed, sort
+ * states: bars, isSorting
+ */
+export function useSorter(algorithmDefault: SortingAlgorithmType) {
+  const [algo, setAlgo] = useState<SortingAlgorithmType>(algorithmDefault);
   const [speed, setSpeed] = useState<number>(speedOptions[1].value as number); // in ms
   const [bars, setBars] = useState<Array<Bar>>([]);
   const [isSorting, setIsSorting] = useState<boolean>(false);
@@ -36,13 +41,13 @@ export function useSorter(algorithm: SortingAlgorithmType) {
     setSpeed(speed);
   }
 
-  function sort() {
+  async function sort() {
     if (isSorting) return;
     setIsSorting(true);
     const algoProps: SortingAlgorithmProps = { bars, setBars, speed };
     //todo: implement other sorting algorithms
     const algos = {
-      bubble: async () => await bubbleSort({ ...algoProps }),
+      bubble: () => bubbleSort({ ...algoProps }),
       selection: () => {},
       insertion: () => {},
       merge: () => {},
@@ -50,7 +55,7 @@ export function useSorter(algorithm: SortingAlgorithmType) {
       heap: () => {},
       radix: () => {},
     };
-    algos[algo]();
+    await algos[algo]();
     setIsSorting(false);
   }
 

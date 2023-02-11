@@ -1,6 +1,10 @@
 import { SortingAlgorithmProps } from "../types";
 import { setBarArrayColor, sleep } from "../utils";
 
+/**
+ * Bubble sort algorithm
+ * @param {SortingAlgorithmProps} { bars, setBars, speed
+ */
 export async function bubbleSort({
   bars,
   setBars,

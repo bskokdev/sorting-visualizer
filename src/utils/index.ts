@@ -1,6 +1,10 @@
 import { Bar } from "../types";
 
 /**
+ * This file contains utility functions that are used in multiple places
+ */
+
+/**
  * Sets the color of the bars to the given color and updates the state
  * @param bars - array of bars
  * @param color - hex color
@@ -33,6 +37,9 @@ export function getRandomNumber(from: number, to: number): number {
   return Math.floor(Math.random() * (to - from + 1) + from);
 }
 
+/**
+ * Returns the number of bars to be displayed on the screen based on the screen size
+ */
 export function getBarCountForScreenSize(): number {
   const width = window.innerWidth;
   if (width < 768) return 13;

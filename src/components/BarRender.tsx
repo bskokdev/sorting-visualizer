@@ -1,5 +1,9 @@
 import { Bar } from "../types";
 
+/**
+ * View of a single bar
+ * @param {Bar} { weight, color }
+ */
 export default function BarRender({ weight, color }: Bar) {
   return (
     <div

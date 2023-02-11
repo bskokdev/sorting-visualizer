@@ -6,6 +6,10 @@ interface SorterProps {
   children?: React.ReactNode;
 }
 
+/**
+ * Wrapper component for the sorting controls and the rendering of the bars
+ * @param {SorterProps} { bars, childrenj }
+ */
 export function Sorter({ bars, children }: SorterProps) {
   return (
     <div className="flex flex-col gap-y-4">

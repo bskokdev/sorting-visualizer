@@ -4,6 +4,10 @@ interface MyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
 }
 
+/**
+ * Custom implementation of a html button, extending the default button props
+ * @param {MyButtonProps} { title, ...htmlButtonProps}
+ */
 export default function MyButton({ title, ...rest }: MyButtonProps) {
   return (
     <button
