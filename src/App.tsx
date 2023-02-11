@@ -6,7 +6,7 @@ function App() {
         Sorting visualizer
       </h1>
       {/*  Controls for choosing sorting algorithm */}
-      <div>to be done</div>
+      <div>remote test</div>
     </div>
   );
 }
