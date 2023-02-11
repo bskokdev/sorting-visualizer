@@ -11,7 +11,7 @@ import { SortingAlgorithmType } from "./types";
  */
 function App() {
   const { changeAlgorithm, changeSpeed, bars, sort, isSorting, shuffle } =
-    useSorter("bubble");
+    useSorter();
 
   return (
     <div className="p-10 flex flex-col items-center h-screen xl:justify-around">

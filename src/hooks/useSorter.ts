@@ -10,8 +10,8 @@ import { SortingAlgorithmProps } from "./../types/index";
  * functions: shuffle, changeAlgorithm, changeSpeed, sort
  * states: bars, isSorting
  */
-export function useSorter(algorithmDefault: SortingAlgorithmType) {
-  const [algo, setAlgo] = useState<SortingAlgorithmType>(algorithmDefault);
+export function useSorter() {
+  const [algo, setAlgo] = useState<SortingAlgorithmType>("bubble");
   const [speed, setSpeed] = useState<number>(speedOptions[1].value as number); // in ms
   const [bars, setBars] = useState<Array<Bar>>([]);
   const [isSorting, setIsSorting] = useState<boolean>(false);
