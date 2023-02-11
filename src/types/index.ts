@@ -12,7 +12,7 @@ export type SelectOption = {
 };
 
 export interface SortingAlgorithmProps {
-  bars: Array<Bar>;
+  bars: Bar[];
   setBars: React.Dispatch<React.SetStateAction<Bar[]>>;
   speed: number;
 }

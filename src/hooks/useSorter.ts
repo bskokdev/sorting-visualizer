@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { bubbleSort } from "../algorithms/bubblesort";
+import { bubbleSort } from "../algorithms/bubbleSort";
+import { heapSort } from "../algorithms/heapSort";
+import { insertionSort } from "../algorithms/insertionSort";
+import { mergeSort } from "../algorithms/mergeSort";
+import { quickSort } from "../algorithms/quickSort";
+import { radixSort } from "../algorithms/radixSort";
+import { selectionSort } from "../algorithms/selectionSort";
 import { speedOptions } from "../constants";
 import { Bar, SortingAlgorithmType } from "../types";
 import { getBarCountForScreenSize, getRandomNumber } from "../utils";
@@ -13,7 +19,7 @@ import { SortingAlgorithmProps } from "./../types/index";
 export function useSorter() {
   const [algo, setAlgo] = useState<SortingAlgorithmType>("bubble");
   const [speed, setSpeed] = useState<number>(speedOptions[1].value as number); // in ms
-  const [bars, setBars] = useState<Array<Bar>>([]);
+  const [bars, setBars] = useState<Bar[]>([]);
   const [isSorting, setIsSorting] = useState<boolean>(false);
 
   // generate array of bars on first render
@@ -45,15 +51,14 @@ export function useSorter() {
     if (isSorting) return;
     setIsSorting(true);
     const algoProps: SortingAlgorithmProps = { bars, setBars, speed };
-    //todo: implement other sorting algorithms
     const algos = {
       bubble: () => bubbleSort({ ...algoProps }),
-      selection: () => {},
-      insertion: () => {},
-      merge: () => {},
-      quick: () => {},
-      heap: () => {},
-      radix: () => {},
+      selection: () => selectionSort({ ...algoProps }),
+      insertion: () => insertionSort({ ...algoProps }),
+      merge: () => mergeSort({ ...algoProps }),
+      quick: () => quickSort({ ...algoProps }),
+      heap: () => heapSort({ ...algoProps }),
+      radix: () => radixSort({ ...algoProps }),
     };
     await algos[algo]();
     setIsSorting(false);
