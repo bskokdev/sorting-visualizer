@@ -1,7 +1,7 @@
-import MyButton from "./components/MyButton";
-import MySelect from "./components/MySelect";
+import MyButton from "./components/input/MyButton";
+import MySelect from "./components/input/MySelect";
+import SorterControls from "./components/input/SorterControls";
 import { Sorter } from "./components/Sorter";
-import SorterControls from "./components/SorterControls";
 import { algorithmOptions, speedOptions } from "./constants";
 import { useSorter } from "./hooks/useSorter";
 import { SortingAlgorithmType } from "./types";
