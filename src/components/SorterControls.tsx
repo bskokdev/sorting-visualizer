@@ -14,7 +14,7 @@ export default function SorterControls({
 }: SorterControlsProps) {
   return (
     <div
-      className="flex justify-center gap-x-3 items-end"
+      className="flex flex-col lg:flex-row lg:items-end justify-center gap-y-3 lg:gap-x-3"
       style={{ pointerEvents: isSorting ? "none" : "auto" }}
     >
       {children}

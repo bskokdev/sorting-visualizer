@@ -32,3 +32,12 @@ export function sleep(milliseconds: number): Promise<void> {
 export function getRandomNumber(from: number, to: number): number {
   return Math.floor(Math.random() * (to - from + 1) + from);
 }
+
+export function getBarCountForScreenSize(): number {
+  const width = window.innerWidth;
+  if (width < 768) return 13;
+  if (width < 1024) return 30;
+  if (width < 1440) return 40;
+  if (width < 1920) return 60;
+  return 85;
+}

@@ -14,9 +14,9 @@ function App() {
     useSorter("bubble");
 
   return (
-    <div className="flex flex-col items-center h-screen justify-around">
+    <div className="p-10 flex flex-col items-center h-screen xl:justify-around">
       {/*  Title */}
-      <h1 className="text-7xl font-extrabold uppercase text-gray-700 py-3">
+      <h1 className="text-center text-6xl lg:text-8xl font-extrabold uppercase text-gray-700 py-3">
         Sorting visualizer
       </h1>
       {/* Sorting + controls */}
