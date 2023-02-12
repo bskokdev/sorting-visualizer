@@ -42,9 +42,9 @@ export function getRandomNumber(from: number, to: number): number {
  */
 export function getBarCountForScreenSize(): number {
   const width = window.innerWidth;
-  if (width < 768) return 13;
-  if (width < 1024) return 30;
-  if (width < 1440) return 40;
-  if (width < 1920) return 60;
-  return 85;
+  if (width < 768) return 18;
+  if (width < 1024) return 40;
+  if (width < 1440) return 70;
+  if (width < 1920) return 100;
+  return 140;
 }
