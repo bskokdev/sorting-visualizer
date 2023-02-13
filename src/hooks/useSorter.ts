@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { bubbleSort } from "../algorithms/bubbleSort";
 import { heapSort } from "../algorithms/heapSort";
 import { insertionSort } from "../algorithms/insertionSort";
-import { mergeSort } from "../algorithms/mergeSort";
 import { quickSort } from "../algorithms/quickSort";
 import { radixSort } from "../algorithms/radixSort";
 import { selectionSort } from "../algorithms/selectionSort";
 import { speedOptions } from "../constants";
 import { Bar, SortingAlgorithmType } from "../types";
-import { getBarCountForScreenSize, getRandomNumber } from "../utils";
+import {
+  getBarCountForScreenSize,
+  getRandomNumber,
+  setBarArrayColor,
+} from "../utils";
 import { SortingAlgorithmProps } from "./../types/index";
 
 /**
@@ -50,12 +53,19 @@ export function useSorter() {
   async function sort() {
     if (isSorting) return;
     setIsSorting(true);
-    const algoProps: SortingAlgorithmProps = { bars, setBars, speed };
+    // props to be passed to sorting algorithms
+    const algoProps: SortingAlgorithmProps = {
+      bars,
+      setBars,
+      speed,
+      cleanup: (currBars: Bar[]) =>
+        setBarArrayColor(currBars, "green", speed, setBars),
+    };
+    // map sorting algorithms to their names and call the selected one
     const algos = {
       bubble: () => bubbleSort({ ...algoProps }),
       selection: () => selectionSort({ ...algoProps }),
       insertion: () => insertionSort({ ...algoProps }),
-      merge: () => mergeSort({ ...algoProps }),
       quick: () => quickSort({ ...algoProps }),
       heap: () => heapSort({ ...algoProps }),
       radix: () => radixSort({ ...algoProps }),

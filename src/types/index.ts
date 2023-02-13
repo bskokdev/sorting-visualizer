@@ -15,13 +15,13 @@ export interface SortingAlgorithmProps {
   bars: Bar[];
   setBars: React.Dispatch<React.SetStateAction<Bar[]>>;
   speed: number;
+  cleanup: (currBars: Bar[]) => Promise<void>;
 }
 
 export type SortingAlgorithmType =
-  | "bubble"
+  | "bubble" // done
   | "selection"
   | "insertion"
-  | "merge"
-  | "quick"
+  | "quick" // done
   | "heap"
   | "radix";
