@@ -4,6 +4,10 @@ interface MyRangeProps extends React.HTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
+/**
+ * Custom range input extending HTMLInputElement and adding label, currSize, and maxSize props
+ * @param {MyRangeProps} { currSize, maxSize, label, html props}
+ */
 export default function MyRange({
   currSize,
   maxSize,
