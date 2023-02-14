@@ -7,11 +7,7 @@ import { radixSort } from "../algorithms/radixSort";
 import { selectionSort } from "../algorithms/selectionSort";
 import { speedOptions } from "../constants";
 import { Bar, SortingAlgorithmType } from "../types";
-import {
-  getBarCountForScreenSize,
-  getRandomNumber,
-  setBarArrayColor,
-} from "../utils";
+import { getRandomNumber, setBarArrayColor } from "../utils";
 import { SortingAlgorithmProps } from "./../types/index";
 
 /**
@@ -19,23 +15,23 @@ import { SortingAlgorithmProps } from "./../types/index";
  * functions: shuffle, changeAlgorithm, changeSpeed, sort
  * states: bars, isSorting
  */
-export function useSorter() {
+export function useSorter(defaultInputSize: number) {
   const [algo, setAlgo] = useState<SortingAlgorithmType>("bubble");
   const [speed, setSpeed] = useState<number>(speedOptions[1].value as number); // in ms
   const [bars, setBars] = useState<Bar[]>([]);
+  const [currInputSize, setCurrInputSize] = useState<number>(defaultInputSize);
   const [isSorting, setIsSorting] = useState<boolean>(false);
 
-  // generate array of bars on first render
+  // generate array of bars on first render and when input size changes
   useEffect(() => {
     generateRandomBars();
-  }, []);
+  }, [currInputSize]);
 
   // generate bars with random weights
   function generateRandomBars(): void {
     if (isSorting) return;
     let bars: Array<Bar> = [];
-    const barCount = getBarCountForScreenSize();
-    for (let i = 0; i < barCount; i++) {
+    for (let i = 0; i < currInputSize; i++) {
       const weight = getRandomNumber(10, 100);
       bars = [...bars, { weight, color: "coral" }];
     }
@@ -48,6 +44,10 @@ export function useSorter() {
 
   function changeSpeed(speed: number): void {
     setSpeed(speed);
+  }
+
+  function changeInputSize(size: number): void {
+    setCurrInputSize(size);
   }
 
   async function sort() {
@@ -76,10 +76,12 @@ export function useSorter() {
 
   return {
     bars,
+    isSorting,
+    currInputSize,
     shuffle: generateRandomBars,
     changeAlgorithm,
     changeSpeed,
+    changeInputSize,
     sort,
-    isSorting,
   };
 }

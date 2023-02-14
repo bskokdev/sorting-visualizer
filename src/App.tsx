@@ -1,17 +1,31 @@
+import { useMemo } from "react";
 import MyButton from "./components/input/MyButton";
+import MyRange from "./components/input/MyRange";
 import MySelect from "./components/input/MySelect";
 import SorterControls from "./components/input/SorterControls";
 import { Sorter } from "./components/Sorter";
 import { algorithmOptions, speedOptions } from "./constants";
 import { useSorter } from "./hooks/useSorter";
 import { SortingAlgorithmType } from "./types";
+import { getMaxBarsForScreen } from "./utils";
 
 /**
  * Render the app
  */
 function App() {
-  const { changeAlgorithm, changeSpeed, bars, sort, isSorting, shuffle } =
-    useSorter();
+  const maxInputSize = useMemo(() => {
+    return getMaxBarsForScreen();
+  }, []);
+  const {
+    bars,
+    currInputSize,
+    isSorting,
+    changeAlgorithm,
+    changeSpeed,
+    changeInputSize,
+    sort,
+    shuffle,
+  } = useSorter(maxInputSize);
 
   return (
     <div className="p-10 flex flex-col items-center h-screen xl:justify-around">
@@ -25,7 +39,7 @@ function App() {
           <MySelect
             label={"Algorithm"}
             options={algorithmOptions}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               changeAlgorithm(e.target.value as SortingAlgorithmType)
             }
           />
@@ -33,10 +47,20 @@ function App() {
             defaultValue={speedOptions[1].value}
             label={"Speed"}
             options={speedOptions}
-            onChange={(e) => changeSpeed(Number(e.target.value))}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              changeSpeed(Number(e.target.value))
+            }
           />
           <MyButton title="Shuffle" onClick={shuffle} />
           <MyButton title="Sort" onClick={sort} />
+          <MyRange
+            currSize={currInputSize}
+            maxSize={maxInputSize}
+            label="Input size"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              changeInputSize(Number(e.target.value))
+            }
+          />
         </SorterControls>
       </Sorter>
     </div>

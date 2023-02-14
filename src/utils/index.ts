@@ -40,7 +40,8 @@ export function getRandomNumber(from: number, to: number): number {
 /**
  * Returns the number of bars to be displayed on the screen based on the screen size
  */
-export function getBarCountForScreenSize(): number {
+export function getMaxBarsForScreen(): number {
+  console.log("get max bars for screen");
   const width = window.innerWidth;
   if (width < 768) return 18;
   if (width < 1024) return 40;
