@@ -1,7 +1,7 @@
 import { SortingAlgorithmProps } from "./../types/index";
 export async function radixSort({
   bars,
-  setBars,
+  updateBars: setBars,
   speed,
 }: SortingAlgorithmProps) {
   // todo: implement radix sort

@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { bubbleSort } from "../algorithms/bubbleSort";
 import { heapSort } from "../algorithms/heapSort";
 import { insertionSort } from "../algorithms/insertionSort";
 import { quickSort } from "../algorithms/quickSort";
 import { radixSort } from "../algorithms/radixSort";
 import { selectionSort } from "../algorithms/selectionSort";
-import { speedOptions } from "../constants";
-import { Bar, SortingAlgorithmType } from "../types";
+import { INITIAL_STATE, sorterReducer } from "../reducers/sorterReducer";
+import { Bar } from "../types";
 import { getRandomNumber, setBarArrayColor } from "../utils";
 import { SortingAlgorithmProps } from "./../types/index";
 
@@ -15,51 +15,48 @@ import { SortingAlgorithmProps } from "./../types/index";
  * functions: shuffle, changeAlgorithm, changeSpeed, sort
  * states: bars, isSorting
  */
-export function useSorter(defaultInputSize: number) {
-  const [algo, setAlgo] = useState<SortingAlgorithmType>("bubble");
-  const [speed, setSpeed] = useState<number>(speedOptions[1].value as number); // in ms
-  const [bars, setBars] = useState<Bar[]>([]);
-  const [currInputSize, setCurrInputSize] = useState<number>(defaultInputSize);
-  const [isSorting, setIsSorting] = useState<boolean>(false);
+export function useSorter() {
+  const [state, dispatch] = useReducer(sorterReducer, INITIAL_STATE);
 
   // generate array of bars on first render and when input size changes
   useEffect(() => {
     generateRandomBars();
-  }, [currInputSize]);
+  }, [state.currInputSize]);
 
   // generate bars with random weights
   function generateRandomBars(): void {
-    if (isSorting) return;
+    if (state.isSorting) return;
     let bars: Array<Bar> = [];
-    for (let i = 0; i < currInputSize; i++) {
+    for (let i = 0; i < state.currInputSize; i++) {
       const weight = getRandomNumber(10, 100);
       bars = [...bars, { weight, color: "coral" }];
     }
-    setBars(bars);
+    dispatch({ type: "SET_BARS", payload: bars });
   }
 
-  function changeAlgorithm(algorithm: SortingAlgorithmType): void {
-    setAlgo(algorithm);
-  }
-
-  function changeSpeed(speed: number): void {
-    setSpeed(speed);
-  }
-
-  function changeInputSize(size: number): void {
-    setCurrInputSize(size);
+  function handleInputChange(field: string, numeric: boolean = false) {
+    return (e: React.ChangeEvent<any>) => {
+      let { value } = e.target;
+      if (numeric) {
+        value = Number(value);
+      }
+      dispatch({ type: "HANDLE_INPUT_CHANGE", payload: { field, value } });
+    };
   }
 
   async function sort() {
-    if (isSorting) return;
-    setIsSorting(true);
+    if (state.isSorting) return;
+    dispatch({ type: "SET_IS_SORTING", payload: true });
     // props to be passed to sorting algorithms
     const algoProps: SortingAlgorithmProps = {
-      bars,
-      setBars,
-      speed,
+      bars: state.bars,
+      updateBars: (newBars: Bar[]) =>
+        dispatch({ type: "SET_BARS", payload: newBars }),
+      speed: state.speed,
       cleanup: (currBars: Bar[]) =>
-        setBarArrayColor(currBars, "green", speed, setBars),
+        setBarArrayColor(currBars, "green", state.speed, () =>
+          dispatch({ type: "SET_BARS", payload: currBars })
+        ),
     };
     // map sorting algorithms to their names and call the selected one
     const algos = {
@@ -70,18 +67,14 @@ export function useSorter(defaultInputSize: number) {
       heap: () => heapSort({ ...algoProps }),
       radix: () => radixSort({ ...algoProps }),
     };
-    await algos[algo]();
-    setIsSorting(false);
+    await algos[state.algo]();
+    dispatch({ type: "SET_IS_SORTING", payload: false });
   }
 
   return {
-    bars,
-    isSorting,
-    currInputSize,
+    sorter: state,
     shuffle: generateRandomBars,
-    changeAlgorithm,
-    changeSpeed,
-    changeInputSize,
+    handleInputChange,
     sort,
   };
 }

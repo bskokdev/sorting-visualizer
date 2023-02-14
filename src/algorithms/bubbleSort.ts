@@ -7,7 +7,7 @@ import { sleep } from "../utils";
  */
 export async function bubbleSort({
   bars,
-  setBars,
+  updateBars: setBars,
   speed,
   cleanup,
 }: SortingAlgorithmProps): Promise<void> {

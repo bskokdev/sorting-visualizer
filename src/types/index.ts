@@ -13,9 +13,17 @@ export type SelectOption = {
 
 export interface SortingAlgorithmProps {
   bars: Bar[];
-  setBars: React.Dispatch<React.SetStateAction<Bar[]>>;
+  updateBars: (newBars: Bar[]) => void;
   speed: number;
   cleanup: (currBars: Bar[]) => Promise<void>;
+}
+
+export interface Sorter {
+  algo: SortingAlgorithmType;
+  bars: Bar[];
+  speed: number;
+  isSorting: boolean;
+  currInputSize: number;
 }
 
 export type SortingAlgorithmType =

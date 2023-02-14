@@ -7,12 +7,12 @@ import { sleep } from "../utils";
  */
 export async function quickSort({
   bars,
-  setBars,
+  updateBars,
   speed,
   cleanup,
 }: SortingAlgorithmProps) {
   const currArray = [...bars];
-  await sortHelper(currArray, 0, currArray.length - 1, speed, setBars);
+  await sortHelper(currArray, 0, currArray.length - 1, speed, updateBars);
   cleanup(currArray);
 }
 
@@ -21,7 +21,7 @@ async function sortHelper(
   lowIdx: number,
   highIdx: number,
   speed: number,
-  setBars: React.Dispatch<React.SetStateAction<Bar[]>>
+  setBars: (bars: Bar[]) => void
 ) {
   if (lowIdx >= highIdx) return;
   // last element as pivot

@@ -15,11 +15,11 @@ export async function setBarArrayColor(
   bars: Array<Bar>,
   color: string,
   speed: number,
-  setBars: React.Dispatch<React.SetStateAction<Bar[]>>
+  updateBars: (bars: Bar[]) => void
 ) {
   for (let i = 0; i < bars.length; ++i) {
     bars[i].color = color;
-    setBars([...bars]);
+    updateBars([...bars]);
     await sleep(speed);
   }
 }
@@ -41,7 +41,6 @@ export function getRandomNumber(from: number, to: number): number {
  * Returns the number of bars to be displayed on the screen based on the screen size
  */
 export function getMaxBarsForScreen(): number {
-  console.log("get max bars for screen");
   const width = window.innerWidth;
   if (width < 768) return 18;
   if (width < 1024) return 40;
