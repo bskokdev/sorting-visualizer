@@ -45,6 +45,5 @@ export function getMaxBarsForScreen(): number {
   if (width < 768) return 18;
   if (width < 1024) return 40;
   if (width < 1440) return 70;
-  if (width < 1920) return 100;
-  return 140;
+  return 100;
 }

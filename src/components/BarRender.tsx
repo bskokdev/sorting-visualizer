@@ -9,7 +9,7 @@ export default function BarRender({ weight, color }: Bar) {
     <div
       className="w-2 mx-0.5 rounded-t-2xl"
       style={{
-        height: weight * 5,
+        height: weight * 3,
         backgroundColor: color,
       }}
     ></div>

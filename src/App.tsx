@@ -19,9 +19,9 @@ function App() {
   const { sorter, sort, shuffle, handleInputChange } = useSorter();
 
   return (
-    <div className="p-10 flex flex-col items-center h-screen xl:justify-around">
+    <div className="p-10 flex flex-col items-center min-h-screen xl:justify-around">
       {/*  Title */}
-      <h1 className="text-center text-4xl xl:text-8xl font-extrabold uppercase text-gray-700 py-3">
+      <h1 className="text-center text-4xl xl:text-8xl font-extrabold uppercase text-gray-700 pt-1 pb-5">
         Sorting visualizer
       </h1>
       {/* Sorting + controls */}
@@ -48,6 +48,12 @@ function App() {
           />
         </SorterControls>
       </Sorter>
+      <footer className="text-center text-gray-500 text-sm font-bold py-10">
+        Made with ❤️ by{" "}
+        <a href="https://skokcmd.com" className="text-blue-500">
+          @skokcmd
+        </a>
+      </footer>
     </div>
   );
 }
