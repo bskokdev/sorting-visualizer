@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 interface MyRangeProps extends React.HTMLAttributes<HTMLInputElement> {
   currSize: number;
   maxSize: number;
@@ -14,17 +16,18 @@ export default function MyRange({
   label,
   ...props
 }: MyRangeProps) {
+  const id = useId();
   return (
     <div>
       <label
-        htmlFor="range-input"
+        htmlFor={id}
         className="flex flex-col text-center text-md pl-1.5 font-medium text-gray-700"
       >
         {label}: {currSize}
       </label>
       <input
         {...props}
-        id="range-input"
+        id={id}
         type="range"
         value={currSize}
         min="1"
