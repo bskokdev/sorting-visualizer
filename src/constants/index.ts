@@ -10,7 +10,6 @@ export const algorithmOptions: Array<SelectOption> = [
   { value: "selection", label: "Selection sort" },
   { value: "quick", label: "Quick sort" },
   { value: "heap", label: "Heap sort" },
-  { value: "radix", label: "Radix sort" },
 ];
 
 // values are in ms
