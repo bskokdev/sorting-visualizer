@@ -1,20 +1,20 @@
-import { Bar, SortingAlgorithmProps } from "../types";
+import { Bar, SortingAlgorithm, SortingAlgorithmProps } from "../types";
 import { sleep } from "../utils";
 
 /**
  * Quick Sort - O(n log n) time complexity
  * @param {SortingAlgorithmProps} { bars, setBars, speed, cleanup }
  */
-export async function quickSort({
+export const quickSort: SortingAlgorithm = async ({
   bars,
   updateBars,
   speed,
   cleanup,
-}: SortingAlgorithmProps) {
+}: SortingAlgorithmProps): Promise<void> => {
   const currArray = [...bars];
   await sortHelper(currArray, 0, currArray.length - 1, speed, updateBars);
   cleanup(currArray);
-}
+};
 
 async function sortHelper(
   array: Bar[],
@@ -22,7 +22,7 @@ async function sortHelper(
   highIdx: number,
   speed: number,
   setBars: (bars: Bar[]) => void
-) {
+): Promise<void> {
   if (lowIdx >= highIdx) return;
   // last element as pivot
   const pivot = array[highIdx];

@@ -1,9 +1,10 @@
-import { SortingAlgorithmProps } from "../types";
+import { SortingAlgorithm, SortingAlgorithmProps } from "../types";
 
-export async function selectionSort({
+export const selectionSort: SortingAlgorithm = async ({
   bars,
-  updateBars: setBars,
+  updateBars,
   speed,
-}: SortingAlgorithmProps) {
-  //Todo: implement selection sort
-}
+  cleanup,
+}: SortingAlgorithmProps): Promise<void> => {
+  // todo implement selection sort
+};

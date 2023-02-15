@@ -1,8 +1,10 @@
-import { SortingAlgorithmProps } from "./../types/index";
-export async function radixSort({
+import { SortingAlgorithm, SortingAlgorithmProps } from "./../types/index";
+
+export const radixSort: SortingAlgorithm = async ({
   bars,
-  updateBars: setBars,
+  updateBars,
   speed,
-}: SortingAlgorithmProps) {
-  // todo: implement radix sort
-}
+  cleanup,
+}: SortingAlgorithmProps) => {
+  // implement radix sort here
+};

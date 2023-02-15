@@ -6,7 +6,7 @@ import { quickSort } from "../algorithms/quickSort";
 import { radixSort } from "../algorithms/radixSort";
 import { selectionSort } from "../algorithms/selectionSort";
 import { INITIAL_STATE, sorterReducer } from "../reducers/sorterReducer";
-import { Bar } from "../types";
+import { Bar, SortingAlgorithm, SortingAlgorithmType } from "../types";
 import { getRandomNumber, setBarArrayColor } from "../utils";
 import { SortingAlgorithmProps } from "./../types/index";
 
@@ -59,15 +59,15 @@ export function useSorter() {
         ),
     };
     // map sorting algorithms to their names and call the selected one
-    const algos = {
-      bubble: () => bubbleSort({ ...algoProps }),
-      selection: () => selectionSort({ ...algoProps }),
-      insertion: () => insertionSort({ ...algoProps }),
-      quick: () => quickSort({ ...algoProps }),
-      heap: () => heapSort({ ...algoProps }),
-      radix: () => radixSort({ ...algoProps }),
+    const algos: Record<SortingAlgorithmType, SortingAlgorithm> = {
+      bubble: (props) => bubbleSort(props),
+      selection: (props) => selectionSort(props),
+      insertion: (props) => insertionSort(props),
+      quick: (props) => quickSort(props),
+      heap: (props) => heapSort(props),
+      radix: (props) => radixSort(props),
     };
-    await algos[state.algo]();
+    await algos[state.algo]({ ...algoProps });
     dispatch({ type: "SET_IS_SORTING", payload: false });
   }
 

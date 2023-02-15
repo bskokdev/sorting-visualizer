@@ -1,5 +1,5 @@
 import { speedOptions } from "../constants";
-import { Bar, Sorter, SortingAlgorithmType } from "../types";
+import { Sorter } from "../types";
 import { getMaxBarsForScreen } from "../utils";
 
 export const INITIAL_STATE: Sorter = {
@@ -21,20 +21,18 @@ export type SorterActionType =
   | "SET_IS_SORTING"
   | "HANDLE_INPUT_CHANGE";
 
+type UpdateSorterState = (state: Sorter, payload: any) => Sorter;
+
 export function sorterReducer(state: Sorter, action: SorterAction) {
   const { type, payload } = action;
-  switch (type) {
-    case "SET_ALGO":
-      return { ...state, algo: payload as SortingAlgorithmType };
-    case "SET_IS_SORTING":
-      return { ...state, isSorting: payload as boolean };
-    case "SET_BARS":
-      return { ...state, bars: payload as Bar[] };
-    case "HANDLE_INPUT_CHANGE":
-      return {
-        ...state,
-        [payload.field]: payload.value,
-      };
-  }
-  return state;
+  const actions: Record<SorterActionType, UpdateSorterState> = {
+    SET_ALGO: (state, payload) => ({ ...state, algo: payload }),
+    SET_BARS: (state, payload) => ({ ...state, bars: payload }),
+    SET_IS_SORTING: (state, payload) => ({ ...state, isSorting: payload }),
+    HANDLE_INPUT_CHANGE: (state, payload) => ({
+      ...state,
+      [payload.field]: payload.value,
+    }),
+  };
+  return actions[type](state, payload);
 }

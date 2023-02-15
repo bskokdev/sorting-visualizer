@@ -1,16 +1,16 @@
-import { SortingAlgorithmProps } from "../types";
+import { SortingAlgorithm, SortingAlgorithmProps } from "../types";
 import { sleep } from "../utils";
 
 /**
  * Bubble sort - O(n^2) time complexity
  * @param {SortingAlgorithmProps} { bars, setBars, speed
  */
-export async function bubbleSort({
+export const bubbleSort: SortingAlgorithm = async ({
   bars,
-  updateBars: setBars,
+  updateBars,
   speed,
   cleanup,
-}: SortingAlgorithmProps): Promise<void> {
+}: SortingAlgorithmProps): Promise<void> => {
   const sortedArray = bars;
   for (let i = 0; i < sortedArray.length; ++i) {
     for (let j = 0; j < sortedArray.length - 1; ++j) {
@@ -19,7 +19,7 @@ export async function bubbleSort({
         const temp = sortedArray[j];
         sortedArray[j] = sortedArray[j + 1];
         sortedArray[j + 1] = temp;
-        setBars([...sortedArray]);
+        updateBars([...sortedArray]);
 
         // we change the color of the bars that are being compared
         sortedArray[j].color = "#b91c1c";
@@ -33,4 +33,4 @@ export async function bubbleSort({
     }
   }
   cleanup(sortedArray);
-}
+};

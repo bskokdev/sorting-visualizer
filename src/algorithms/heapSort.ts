@@ -1,8 +1,10 @@
-import { SortingAlgorithmProps } from "./../types/index";
-export async function heapSort({
+import { SortingAlgorithm, SortingAlgorithmProps } from "./../types/index";
+
+export const heapSort: SortingAlgorithm = async ({
   bars,
-  updateBars: setBars,
+  updateBars,
   speed,
-}: SortingAlgorithmProps) {
-  // todo: implement heap sort
-}
+  cleanup,
+}: SortingAlgorithmProps) => {
+  // implement heap sort here
+};

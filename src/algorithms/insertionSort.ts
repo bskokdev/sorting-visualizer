@@ -1,12 +1,12 @@
-import { SortingAlgorithmProps } from "../types";
+import { SortingAlgorithm, SortingAlgorithmProps } from "../types";
 import { sleep } from "../utils";
 
-export async function insertionSort({
+export const insertionSort: SortingAlgorithm = async ({
   bars,
   updateBars,
   speed,
   cleanup,
-}: SortingAlgorithmProps) {
+}: SortingAlgorithmProps): Promise<void> => {
   const sortedBars = [...bars];
   for (let i = 1; i < sortedBars.length; ++i) {
     let j = i - 1;
@@ -24,4 +24,4 @@ export async function insertionSort({
     await sleep(speed * 5);
   }
   cleanup(sortedBars);
-}
+};
