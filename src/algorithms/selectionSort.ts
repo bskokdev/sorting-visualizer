@@ -21,7 +21,7 @@ export const selectionSort: SortingAlgorithm = async ({
     for (let j = i + 1; j < sortedBars.length; ++j) {
       sortedBars[j].color = "#0369a1";
       updateBars(sortedBars);
-      await sleep(speed * 5);
+      await sleep(speed);
       sortedBars[j].color = "coral";
       updateBars(sortedBars);
       if (sortedBars[j].weight < sortedBars[minIndex].weight) {
@@ -30,7 +30,7 @@ export const selectionSort: SortingAlgorithm = async ({
     }
     sortedBars[minIndex].color = "green";
     updateBars(sortedBars);
-    await sleep(speed * 100);
+    await sleep(speed * 20);
 
     sortedBars[i].color = "coral";
     sortedBars[minIndex].color = "coral";
