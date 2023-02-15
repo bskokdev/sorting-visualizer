@@ -30,7 +30,7 @@ export const selectionSort: SortingAlgorithm = async ({
     }
     sortedBars[minIndex].color = "green";
     updateBars(sortedBars);
-    await sleep(speed * 20);
+    await sleep(speed);
 
     sortedBars[i].color = "coral";
     sortedBars[minIndex].color = "coral";
