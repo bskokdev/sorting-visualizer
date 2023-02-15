@@ -1,6 +1,10 @@
 import { speedOptions } from "../constants";
-import { Sorter } from "../types";
+import { Bar, Sorter, SortingAlgorithmType } from "../types";
 import { getMaxBarsForScreen } from "../utils";
+
+/**
+ * This file contains reducer for the sorter state and coresponding types
+ */
 
 export const INITIAL_STATE: Sorter = {
   algo: "bubble",
@@ -10,9 +14,15 @@ export const INITIAL_STATE: Sorter = {
   currInputSize: getMaxBarsForScreen(),
 };
 
+type SorterPayload =
+  | SortingAlgorithmType
+  | Bar[]
+  | boolean
+  | { field: string; value: string | number };
+
 export interface SorterAction {
   type: SorterActionType;
-  payload: any;
+  payload: SorterPayload;
 }
 
 export type SorterActionType =
@@ -23,6 +33,7 @@ export type SorterActionType =
 
 type UpdateSorterState = (state: Sorter, payload: any) => Sorter;
 
+// reducer for the sorter state which takes the current state and an action and returns the new state based on the action type
 export function sorterReducer(state: Sorter, action: SorterAction) {
   const { type, payload } = action;
   const actions: Record<SorterActionType, UpdateSorterState> = {

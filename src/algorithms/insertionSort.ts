@@ -1,6 +1,7 @@
 import { SortingAlgorithm, SortingAlgorithmProps } from "../types";
 import { sleep } from "../utils";
 
+// Insertion sort algorithm - O(n^2)
 export const insertionSort: SortingAlgorithm = async ({
   bars,
   updateBars,

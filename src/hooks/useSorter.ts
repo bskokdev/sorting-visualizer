@@ -11,8 +11,7 @@ import { SortingAlgorithmProps } from "./../types/index";
 
 /**
  * Custom hook to handle sorting logic
- * functions: shuffle, changeAlgorithm, changeSpeed, sort
- * states: bars, isSorting
+ * @returns {object} { sorter - current state, handleInputChange, sort, shuffle }
  */
 export function useSorter() {
   const [state, dispatch] = useReducer(sorterReducer, INITIAL_STATE);
@@ -33,6 +32,7 @@ export function useSorter() {
     dispatch({ type: "SET_BARS", payload: bars });
   }
 
+  // takes a field name and returns a function that updates the state with the value of the input
   function handleInputChange(field: string, numeric: boolean = false) {
     return (e: React.ChangeEvent<any>) => {
       let { value } = e.target;
@@ -43,6 +43,7 @@ export function useSorter() {
     };
   }
 
+  // calls the selected sorting algorithm with the current state
   async function sort() {
     if (state.isSorting) return;
     dispatch({ type: "SET_IS_SORTING", payload: true });
