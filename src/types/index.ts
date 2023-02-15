@@ -33,8 +33,7 @@ export type SortingAlgorithmProps = Pick<Sorter, "bars" | "speed"> & {
 
 export type SortingAlgorithmType =
   | "bubble" // done
-  | "selection"
+  | "selection" // done
   | "insertion" // done
   | "quick" // done
-  | "heap"
-  | "radix";
+  | "heap";

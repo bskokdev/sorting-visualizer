@@ -3,7 +3,6 @@ import { bubbleSort } from "../algorithms/bubbleSort";
 import { heapSort } from "../algorithms/heapSort";
 import { insertionSort } from "../algorithms/insertionSort";
 import { quickSort } from "../algorithms/quickSort";
-import { radixSort } from "../algorithms/radixSort";
 import { selectionSort } from "../algorithms/selectionSort";
 import { INITIAL_STATE, sorterReducer } from "../reducers/sorterReducer";
 import { Bar, SortingAlgorithm, SortingAlgorithmType } from "../types";
@@ -65,7 +64,6 @@ export function useSorter() {
       insertion: (props) => insertionSort(props),
       quick: (props) => quickSort(props),
       heap: (props) => heapSort(props),
-      radix: (props) => radixSort(props),
     };
     await algos[state.algo]({ ...algoProps });
     dispatch({ type: "SET_IS_SORTING", payload: false });
