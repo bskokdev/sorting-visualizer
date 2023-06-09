@@ -50,8 +50,8 @@ function App() {
       </Sorter>
       <footer className="text-center text-gray-500 text-sm font-bold py-10">
         Made with ❤️ by{" "}
-        <a href="https://skokcmd.com" className="text-blue-500">
-          @skokcmd
+        <a href="https://github.com/bskokdev" className="text-blue-500">
+          @bskokdev
         </a>
       </footer>
     </div>
