@@ -1,6 +1,5 @@
-import {sleep} from "../utils";
+import {sleep, swapBars} from "../utils";
 import {Bar, SortingAlgorithm, SortingAlgorithmProps} from "../types";
-import {swap} from "./utils";
 
 /**
  * Heap sort algorithm - O(n log n)
@@ -40,7 +39,7 @@ export const heapSort: SortingAlgorithm = async ({
 
     while (lastChildIdx >= 0) {
         // swap the first and last element
-        swap(sortedBars, 0, lastChildIdx)
+        swapBars(sortedBars, 0, lastChildIdx)
         heapify(sortedBars, lastChildIdx, 0);
         lastChildIdx--;
 
@@ -73,7 +72,7 @@ function heapify(bars: Bar[], length: number, pIdx: number) {
     }
 
     if (largest !== pIdx) {
-        swap(bars, pIdx, largest)
+        swapBars(bars, pIdx, largest)
         heapify(bars, length, largest);
     }
 }

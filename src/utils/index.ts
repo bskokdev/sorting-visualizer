@@ -47,3 +47,9 @@ export function getMaxBarsForScreen(): number {
     if (width < 1440) return 70;
     return 100;
 }
+
+export function swapBars(arr: Bar[], indexA: number, indexB: number) {
+    const temp = arr[indexA];
+    arr[indexA] = arr[indexB];
+    arr[indexB] = temp;
+}

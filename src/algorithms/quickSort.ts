@@ -1,6 +1,5 @@
 import {Bar, SortingAlgorithm, SortingAlgorithmProps} from "../types";
-import {sleep} from "../utils";
-import {swap} from "./utils";
+import {sleep, swapBars} from "../utils";
 
 /**
  * Quick Sort - O(n log n) time complexity
@@ -53,12 +52,12 @@ async function sortHelper(
             array[right].color = "coral";
             setBars([...array]);
         }
-        swap(array, left, right)
+        swapBars(array, left, right)
         // resets pivot color
         pivot.color = "coral";
         setBars([...array]);
     }
-    swap(array, left, highIdx);
+    swapBars(array, left, highIdx);
 
     // recursively sort left and right arrays
     await sortHelper(array, lowIdx, left - 1, speed, setBars);

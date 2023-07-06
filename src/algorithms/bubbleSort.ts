@@ -1,6 +1,5 @@
 import {SortingAlgorithm, SortingAlgorithmProps} from "../types";
-import {sleep} from "../utils";
-import {swap} from "./utils";
+import {sleep, swapBars} from "../utils";
 
 /**
  * Bubble sort - O(n^2) time complexity
@@ -16,7 +15,7 @@ export const bubbleSort: SortingAlgorithm = async ({
     for (let i = 0; i < sortedArray.length; ++i) {
         for (let j = 0; j < sortedArray.length - 1; ++j) {
             if (sortedArray[j].weight > sortedArray[j + 1].weight) {
-                swap(sortedArray, j, j + 1);
+                swapBars(sortedArray, j, j + 1);
                 updateBars([...sortedArray]);
 
                 // we change the color of the bars that are being compared

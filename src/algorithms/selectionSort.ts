@@ -1,6 +1,5 @@
 import {SortingAlgorithm, SortingAlgorithmProps} from "../types";
-import {sleep} from "../utils";
-import {swap} from "./utils";
+import {sleep, swapBars} from "../utils";
 
 /**
  * Selection Sort - O(n^2) time complexity
@@ -37,7 +36,7 @@ export const selectionSort: SortingAlgorithm = async ({
         sortedBars[minIndex].color = "coral";
         updateBars(sortedBars);
         await sleep(speed);
-        swap(sortedBars, i, minIndex)
+        swapBars(sortedBars, i, minIndex)
     }
     await cleanup(sortedBars);
 };
