@@ -1,4 +1,4 @@
-import { Bar } from "../types";
+import {Bar} from "../types";
 
 /**
  * View of a single bar

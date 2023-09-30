@@ -1,4 +1,4 @@
-import { SelectOption } from "../types";
+import {SelectOption} from "../types";
 
 /**
  * @fileoverview This file contains all the constants used in the app

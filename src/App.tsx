@@ -1,12 +1,12 @@
-import { useMemo } from "react";
+import {useMemo} from "react";
 import MyButton from "./components/input/MyButton";
 import MyRange from "./components/input/MyRange";
 import MySelect from "./components/input/MySelect";
 import SorterControls from "./components/input/SorterControls";
-import { Sorter } from "./components/Sorter";
-import { algorithmOptions, speedOptions } from "./constants";
-import { useSorter } from "./hooks/useSorter";
-import { getMaxBarsForScreen } from "./utils";
+import {Sorter} from "./components/Sorter";
+import {algorithmOptions, speedOptions} from "./constants";
+import {useSorter} from "./hooks/useSorter";
+import {getMaxBarsForScreen} from "./utils";
 
 /**
  * Render the app
